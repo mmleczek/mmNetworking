@@ -1,4 +1,4 @@
-# Usage
+# Examples
 ## Lua
 ### Export with all possible vehicle parameters
 ```lua
