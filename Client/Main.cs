@@ -12,8 +12,6 @@ namespace Client
         public Dictionary<int, uint> UsedModels = new Dictionary<int, uint>();
         public int CurrentRequestId = 0;
 
-        public object JsonSerializer { get; private set; }
-
         public Main()
         {
             EventHandlers["mmNetworking:resp"] += new Action<int, int>(async (request, networkid) =>
@@ -37,7 +35,6 @@ namespace Client
                             {
                                 PendingVehicles[request].Invoke(entity);
                             }
-                            PendingVehicles.Remove(request);
                         }
                         else
                         {
@@ -46,6 +43,7 @@ namespace Client
                                 PendingVehicles[request].Invoke(0);
                             }
                         }
+
                         PendingVehicles.Remove(request);
                         SetModelAsNoLongerNeeded(UsedModels[request]);
                         UsedModels.Remove(request);

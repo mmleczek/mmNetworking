@@ -134,7 +134,10 @@ namespace Server
 
                     if (p.Param.ContainsKey("SetVehicleNumberPlateText"))
                     {
-                        SetVehicleNumberPlateText(e, p.Param["SetVehicleNumberPlateText"]);
+                        if (!string.IsNullOrEmpty(p.Param["SetVehicleNumberPlateText"]))
+                        {
+                            SetVehicleNumberPlateText(e, p.Param["SetVehicleNumberPlateText"]);
+                        }
                     }
                     #endregion
 
