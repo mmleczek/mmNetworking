@@ -3,18 +3,18 @@
 ### File: client/functions.lua
 ```lua
 ESX.Game.SpawnVehicle = function(modelName, coords, heading, cb)
-	exports.mmNetworking:CreateVehicle(modelName, coords.x, coords.y, coords.z, heading, 
-	{
-		IsNetwork = true,
-		NetMissionEntity = true
-	},
-	function(vehicle)
-		if cb then
-			Citizen.CreateThread(function()
-				cb(vehicle)
-			end)
-		end
-	end)
+  exports.mmNetworking:CreateVehicle(modelName, coords.x, coords.y, coords.z, heading, 
+  {
+    IsNetwork = true,
+    NetMissionEntity = true
+  },
+  function(vehicle)
+    if cb then
+      Citizen.CreateThread(function()
+        cb(vehicle)
+      end)
+    end
+  end)
 end
 ```
 ## Export with all possible vehicle parameters
