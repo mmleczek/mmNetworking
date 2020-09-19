@@ -20,13 +20,22 @@ namespace Client
                 {
                     if (PendingVehicles.ContainsKey(request))
                     {
-                        if (NetworkDoesNetworkIdExist(networkid))
+                        NetworkRequestControlOfNetworkId(networkid);
+                        if (NetworkDoesNetworkIdExist(networkid) && networkid != -1)
                         {
+                            NetworkRequestControlOfNetworkId(networkid);
+                            while(!NetworkHasControlOfNetworkId(networkid))
+                            {
+                                await Delay(0);
+                                NetworkRequestControlOfNetworkId(networkid);
+                            }
+
                             int entity = NetworkGetEntityFromNetworkId(networkid);
                             NetworkRequestControlOfEntity(entity);
                             while (!NetworkHasControlOfEntity(entity))
                             {
                                 await Delay(0);
+                                NetworkRequestControlOfEntity(entity);
                             }
 
                             ClearVehicleOfPeds(entity);
@@ -52,7 +61,6 @@ namespace Client
                 catch(Exception ex)
                 { Log.Error(ex); }
             });
-
             Exports.Add("CreateVehicle", new Action<dynamic, float, float, float, float, dynamic, CallbackDelegate>(async (model_, x, y, z, h, o, cb) =>
             {
                 try
