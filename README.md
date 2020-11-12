@@ -1,7 +1,7 @@
 # mmNetworking
 FiveM C# resource, created for easy to use spawning networked entities via server side.
 
-#The project has been abandoned, feel free to develop it further on your own
+# The project has been abandoned, feel free to develop it further on your own
 
 # Download
 Click [here](https://github.com/mmleczek/mmNetworking/releases) to go to the releases page and download it.
